@@ -1,8 +1,7 @@
 package com.kaisik.openscheoolaop.model.entity;
 
 import com.kaisik.openscheoolaop.model.entity.enums.LogType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +14,7 @@ import java.util.UUID;
  * Entity класс для записи логов в базу
  */
 @Entity
+@Table(name = "LOG")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,6 +22,7 @@ import java.util.UUID;
 public class EntityLog {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     /**
@@ -33,6 +34,11 @@ public class EntityLog {
      * Дата создания лога
      */
     private Date createdDate;
+
+    /**
+     * Название метода (с сигнатурой)
+     */
+    private String method;
 
     /**
      * Сообщение лога
