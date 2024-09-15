@@ -15,12 +15,13 @@ public class StartWorkServiceImpl implements StartWorkService {
      */
     @Override
     public void startWork() throws InterruptedException {
-    int wastedTime = getWastedTime();
-    if(wastedTime < 5000){
-        doUsefulWork(wastedTime);
-    } else {
-        doErrorWork(wastedTime);
-    }
+        // получаем рандомное число и в зависимости от него запускам полезную работы или падаем с ошибкой
+        int wastedTime = getWastedTime();
+        if (wastedTime < 5000) {
+            doUsefulWork(wastedTime);
+        } else {
+            doErrorWork(wastedTime);
+        }
     }
 
 
@@ -53,7 +54,7 @@ public class StartWorkServiceImpl implements StartWorkService {
      *
      * @return Время потраченное на работу
      */
-    private int getWastedTime(){
+    private int getWastedTime() {
         Random random = new Random();
         int min = 1000;
         int max = 10000;

@@ -30,12 +30,13 @@ public class WorkTimeAspect {
     @SneakyThrows
     @Around("within(com.kaisik.openscheoolaop.service.impl.StartWorkServiceImpl)")
     public Object beforeAnyMethod(ProceedingJoinPoint joinPoint) {
-    long startTime = System.currentTimeMillis();
-    Long workTime = null;
-    Object res = null;
+        // переменная чтобы отслеживать время выполнения
+        long startTime = System.currentTimeMillis();
+        Long workTime = null;
+        Object res = null;
 
         try {
-             res = joinPoint.proceed();
+            res = joinPoint.proceed();
         } catch (Throwable e) {
             // при ошибке пишем в бд ошибку с типом ERROR
             workTime = System.currentTimeMillis() - startTime;
@@ -57,7 +58,7 @@ public class WorkTimeAspect {
                 joinPoint.getSignature().getName(),
                 null,
                 workTime));
-        return  res;
+        return res;
     }
 
 }
