@@ -42,21 +42,14 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public List<EntityLog> getLogsByMethodName(String methodName) {
-        return logRepository.findByMethodName(methodName);
+    public List<EntityLog> getLogsByMethodNameAndType(String methodName, LogType type) {
+        if (type == null) {
+            throw new RuntimeException("Не передано название метода для получения статистики");
+        }
+        if (type == null) {
+            return logRepository.findByMethodName(methodName);
+        }
+        return logRepository.findByMethodNameAndType(methodName, type);
     }
 
-    @Override
-    public long getTimeStatisticByMethod(String methodName) {
-        List<EntityLog> logs = getLogsByMethodName(methodName);
-        long sum = logs.stream()
-                .filter(log -> log.getWastedTime() != null)
-                .mapToLong(EntityLog::getWastedTime)
-                .sum();
-        if(sum == 0){
-            return sum;
-        } else {
-            return sum / logs.size();
-        }
-    }
 }

@@ -3,7 +3,6 @@ package com.kaisik.openscheoolaop.model.entity.enums;
 /**
  * Тип лога в бд
  */
-
 public enum LogType {
 
     /**

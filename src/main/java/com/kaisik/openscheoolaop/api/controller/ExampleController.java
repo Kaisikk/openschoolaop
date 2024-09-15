@@ -26,7 +26,7 @@ public class ExampleController {
             startWorkService.startWork();
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception exception){
-            throw new RuntimeException("произошла ошибка в работе сайта");
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
